@@ -3,7 +3,7 @@ import Create from "./Create";
 import Edit from "./Edit";
 import List from "./List";
 
-function Book() {
+function Books() {
   return (
     <>
       <Nav />
@@ -22,4 +22,4 @@ function Book() {
   );
 }
 
-export default Book
+export default Books

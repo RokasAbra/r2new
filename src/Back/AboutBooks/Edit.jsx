@@ -1,19 +1,19 @@
-import { useRef } from "react";
+// import { useRef } from "react";
 import { useEffect, useState, useContext } from "react";
 import BackContext from "../BackContext";
 // import getBase64 from "../../Functions/getBase64";
 
 function Edit() {
-  const { modalProduct, setModalProduct, setEditProduct, cats, setDeletetePhoto } =
+  const { modalAboutBooks, setModalAboutBooks, setEditAboutBooks, books, setDeletetePhoto } =
     useContext(BackContext);
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [inStock, setInStock] = useState(false);
-  const [cat, setCat] = useState("0");
+  const [book, setBook] = useState("0");
   const [lu, setLu] = useState("");
 
-  const fileInput = useRef();
+//   const fileInput = useRef();
 
   const [photoPrint, setPhotoPrint] = useState(null);
 
@@ -33,33 +33,33 @@ function Edit() {
     return out;
   };
   useEffect(() => {
-    if (null === modalProduct) {
+    if (null === modalAboutBooks) {
       return;
     }
-    // console.log(modalProduct);
-    setTitle(modalProduct.title);
-    setPrice(modalProduct.price);
-    setInStock(modalProduct.in_stock ? true : false);
-    setCat(cats.filter((c) => c.title === modalProduct.cat)[0].id);
-    setLu(setDateFormat(modalProduct.lu));
-    setPhotoPrint(modalProduct.photo);
-  }, [modalProduct, cats]);
+    // console.log(modalAboutBooks);
+    setTitle(modalAboutBooks.title);
+    setPrice(modalAboutBooks.price);
+    setInStock(modalAboutBooks.in_stock ? true : false);
+    // setBook(book.filter((c) => c.title === modalAboutBooks.book)[0].id);
+    setLu(setDateFormat(modalAboutBooks.lu));
+    setPhotoPrint(modalAboutBooks.photo);
+  }, [modalAboutBooks, books]);
 
   const handleEdit = () => {
     const data = {
       title,
-      id: modalProduct.id,
+      id: modalAboutBooks.id,
       in_stock: inStock ? "1" : "0",
       price: parseFloat(price),
-      cat: parseInt(cat),
+      book: parseInt(book),
       lu: lu,
       photo: photoPrint,
     };
-    setEditProduct(data);
-    setModalProduct(null);
+    setEditAboutBooks(data);
+    setModalAboutBooks(null);
   };
 
-  if (null === modalProduct) {
+  if (null === modalAboutBooks) {
     return null;
   }
 //   const doPhoto = () => {
@@ -70,8 +70,8 @@ function Edit() {
 //       });
 //   };
   const handleDeletePhoto = () => {
-    setDeletetePhoto({id: modalProduct.id});
-    setModalProduct(p => ({...p, photo: null}));
+    setDeletetePhoto({id: modalAboutBooks.id});
+    setModalAboutBooks(p => ({...p, photo: null}));
   }
 
   return (
@@ -83,7 +83,7 @@ function Edit() {
             <button
               type="button"
               className="close"
-              onClick={() => setModalProduct(null)}
+              onClick={() => setModalAboutBooks(null)}
             >
               <span>&times;</span>
             </button>
@@ -138,13 +138,13 @@ function Edit() {
               <label>Categories</label>
               <select
                 className="form-control"
-                onChange={(e) => setCat(e.target.value)}
-                value={cat}
+                onChange={(e) => setBook(e.target.value)}
+                value={book}
               >
                 <option value="0">Please, select your category</option>
 
-                {cats
-                  ? cats.map((c) => (
+                {books
+                  ? books.map((c) => (
                       <option value={c.id} key={c.id}>
                         {c.title}
                       </option>
@@ -159,7 +159,7 @@ function Edit() {
             <button
               type="button"
               className="btn btn-outline-secondary"
-              onClick={() => setModalProduct(null)}
+              onClick={() => setModalAboutBooks(null)}
             >
               Close
             </button>

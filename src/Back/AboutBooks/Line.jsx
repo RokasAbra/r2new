@@ -4,14 +4,14 @@ import BackContext from "../BackContext";
 
 function Line({ line }) {
 
-    const { setDeleteBook, setModalBook } = useContext(BackContext);
+    const { setDeleteAboutBooks, setModalAboutBooks } = useContext(BackContext);
 
     const handleDelete = () => {
-        setDeleteBook(line);
+        setDeleteAboutBooks(line);
     }
 
     const handleEdit = () => {
-        setModalBook(line);
+        setModalAboutBooks(line);
         console.log(line);
     }
 
@@ -19,7 +19,7 @@ function Line({ line }) {
         <li className="list-group-item">
             <div className="item">
                 <div className="content">
-                    <b>{line.genre}</b>
+                    <b>{line.title}</b>
                    
                 </div>
                 <div className="buttons">

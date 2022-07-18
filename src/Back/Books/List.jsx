@@ -5,17 +5,17 @@ import Line from "./Line";
 
 function List() {
 
-    const {book} = useContext(BackContext);
+    const {books} = useContext(BackContext);
 
     return (
         <div className="card mt-4">
             <div className="card-header">
-                <h2>List of Genres</h2>
+                <h2>List of Categories</h2>
             </div>
             <div className="card-body">
                 <ul className="list-group">
                     {
-                    book ? book.map(e => <Line key={e.id} line={e}></Line>) : null
+                    books ? books.map(e => <Line key={e.id} line={e}></Line>) : null
                     }
                 </ul>
             </div>
